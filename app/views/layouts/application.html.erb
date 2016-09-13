@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OrdersAssign</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+	 <div class="container-fluid">
+	  <button class="navbar-toggle collapsed" data-toggle="collapse" type="button" data-target="#myCollapse">
+	   <span class="icon-bar"></span>
+	   <span class="icon-bar"></span>
+	   <span class="icon-bar"></span>
+	  </button>
+	  <div class="navbar-brand">
+	   <%= link_to "Home", root_path%>
+	  </div>
+	  <div class="collapse navbar-collapse" id="myCollapse">
+	   <% if user_signed_in? %>
+	     <ul class="nav navbar-nav pull-right">
+	      <li>
+	    	<%= link_to "Sign_Out", destroy_user_session_path, method: :delete %>
+	    	
+	      </li>
+	     </ul>
+	    <%else%>
+	     <ul class="nav navbar-nav pull-right">
+	      <li>
+	    	<%= link_to "Sign_Up", new_user_registration_path %>
+	      </li>
+	      <li>
+	    	<%= link_to "Sign_In", new_user_session_path %>
+	      </li>
+	     </ul>
+	   <%end%>
+	  </div>
+	 </div>
+	</nav>
+
+	<% if notice %>
+	  <p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	  <p class="alert alert-danger"><%= alert %></p>
+	<% end %>
+	<div class="container">
+	  <div class="row">
+		<%= yield %>
+	  </div>
+	</div>
+
+</body>
+</html>

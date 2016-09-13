@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_number: 1
+  tracking_number: 1
+  delivery_date: 2016-09-13
+  value: MyString
+  currency: MyString
+  is_express_delivery: false
+  is_customer_pickup: false
+  user_id: 
+
+two:
+  order_number: 1
+  tracking_number: 1
+  delivery_date: 2016-09-13
+  value: MyString
+  currency: MyString
+  is_express_delivery: false
+  is_customer_pickup: false
+  user_id: 

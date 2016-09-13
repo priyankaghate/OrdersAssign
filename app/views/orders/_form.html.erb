@@ -1,0 +1,84 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-lg-3">
+      First Name<br>
+      <%= text_field_tag :fname, nil, placeholder: current_user.fname %>
+    </div>
+
+    <div class="form-group col-lg-3">
+      Last Name<br>
+      <%= text_field_tag :lname, nil, placeholder: current_user.lname %>
+    </div>
+
+    <div class="form-group col-lg-3">
+      Date Of Birth<br>
+      <%= text_field_tag :dob, nil, placeholder: current_user.dob %>
+    </div>
+
+    <div class="form-group col-lg-3">
+      'e-mail'<br>
+      <%= text_field_tag :email, nil, placeholder: current_user.email %>
+    </div>
+  </div><hr>
+  
+  <div class="row">
+    <!--<div class="col-lg-3">-->
+      <div class="form-group col-lg-3">
+        <%= f.label :order_number %><br>
+        <%= f.number_field :order_number %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :tracking_number %><br>
+        <%= f.number_field :tracking_number %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :delivery_date %><br>
+        <%= f.date_select :delivery_date %>
+      </div>
+    <!--</div>-->
+
+    <!--<div class="col-lg-3">-->
+      <div class="form-group col-lg-3">
+        <%= f.label :value %><br>
+        <%= f.text_field :value %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.label :currency %><br>
+        <%= f.text_field :currency %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.check_box :is_express_delivery %>
+        <%= f.label :is_express_delivery %>
+      </div>
+      <div class="form-group col-lg-3">
+        <%= f.check_box :is_customer_pickup %>
+        <%= f.label :is_customer_pickup %>
+      </div>
+    <!--</div>-->
+  </div><hr>
+
+  <%=render 'search_product' %>
+
+  <hr>
+
+  <%#= render 'line_item_form' %>
+  <div class="row">
+    <div class="form-group">
+      <%= f.submit(class: 'btn btn-default') %>
+    </div>
+  </div>
+
+  
+<% end %>
