@@ -1,34 +1,21 @@
-  <div class="hide" id="new_line_item_form">
-    <%= render partial: "line_item_form" %>
-  </div>
-
-  <div id="itemSet">
-    <%= render partial: "line_item_form" %>
-  </div>
-  
- <!-- <a href="javascript:;" id="addNewItem">Add New Tag</a> -->
-
     <p>
       <input type="text" id="search">
 	  <input type="button" onclick="myFunction()" value="Search" id="btn">
-	  <%#=params[:product_list]%>    
 	</p>
 
 
 
-<script>
+<!--<script>
+
+var i=1;
 	function myFunction()
 	{
-
-		var new_id = new Date().getTime();
-		var id1 = new Date().getTime();
-		var id2 = new Date().getTime();
+		i++;
+		//alert(i);
+		 //$("#itemSet").append($("#new_line_item_form").html());
+		
 		var product_name = $("#search").val();
-		$("#btn").click(function(){
-			  	//alert('clicked');
-			    $("#itemSet").append($("#new_line_item_form").html());
-			  });
-		//var sku=[];
+		
         $.ajax({
 		   type: 'get',
 		   url: '/orders/search_product',
@@ -36,11 +23,11 @@
 		   	       product_name:  product_name
 		         },
 		   success: function(data){
-		   	//alert(data[0]["name"]);
+		   	alert(data[0]["name"]);
 		   	
-		   //	$('#'+new_id).val(data[0]['sku']);
-		   	//$('#'+id1).val(data[0]['cost']);
-		   	//$('#'+id2).val(data[0]['quantity']);
+		   $('#'+new_id).val(data[0]['sku']);
+		   	$('#'+id1).val(data[0]['cost']);
+		   	$('#'+id2).val(data[0]['quantity']);
 
 		   	 
 
@@ -54,4 +41,5 @@
  
 	}
 
-</script>
+</script> 
+-->

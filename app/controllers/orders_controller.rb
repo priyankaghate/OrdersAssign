@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :login_required
+  before_action :login_required, except: [:index]
 
   # GET /orders
   # GET /orders.json
@@ -15,14 +15,13 @@ class OrdersController < ApplicationController
 
 def search_product
     @product = Product.search(params[:product_name])
-   # p "================#{@product.inspect}=================="
-    #p "---------------------#{params.inspect}--------------------------"
-   render :json => @product
+    render :json => @product
 
 end
   # GET /orders/new
   def new
     @order = Order.new
+    @order.line_items.build
   end
 
   # GET /orders/1/edit
@@ -33,10 +32,7 @@ end
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    
 
-
-     p "-----------------*******#{params.inspect}********---------------------"
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -85,6 +81,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_number, :tracking_number, :delivery_date, :value, :currency, :is_express_delivery, :is_customer_pickup, :user_id)
+      params.require(:order).permit(:order_number, :tracking_number, :delivery_date, :value, :currency, :is_express_delivery, :is_customer_pickup, line_items_attributes: [:id,:sku, :cost, :quantity, :product_id])
     end
 end

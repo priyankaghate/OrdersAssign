@@ -22,7 +22,9 @@
 	     <ul class="nav navbar-nav pull-right">
 	      <li>
 	    	<%= link_to "Sign_Out", destroy_user_session_path, method: :delete %>
-	    	
+	      </li>
+	      <li>
+	    	<%= link_to "Create Product", new_product_path %>
 	      </li>
 	     </ul>
 	    <%else%>

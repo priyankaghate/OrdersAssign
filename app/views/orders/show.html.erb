@@ -1,44 +1,87 @@
-<p id="notice"><%= notice %></p>
+<strong>Customer Details:</strong>
+<div class="row">
 
-<p>
-  <strong>Order number:</strong>
-  <%= @order.order_number %>
-</p>
+    <div class="form-group col-lg-3">
+      First Name<br>
+      <%= text_field_tag :fname, nil, placeholder: current_user.fname,:readonly => true %>
+    </div>
 
-<p>
-  <strong>Tracking number:</strong>
-  <%= @order.tracking_number %>
-</p>
+    <div class="form-group col-lg-3">
+      Last Name<br>
+      <%= text_field_tag :lname, nil, placeholder: current_user.lname,:readonly => true %>
+    </div>
 
-<p>
-  <strong>Delivery date:</strong>
-  <%= @order.delivery_date %>
-</p>
+    <div class="form-group col-lg-3">
+      Date Of Birth<br>
+      <%= text_field_tag :dob, nil, placeholder: current_user.dob,:readonly => true %>
+    </div>
 
-<p>
-  <strong>Value:</strong>
-  <%= @order.value %>
-</p>
+    <div class="form-group col-lg-3">
+      'e-mail'<br>
+      <%= text_field_tag :email, nil, placeholder: current_user.email,:readonly => true %>
+    </div>
+  </div><hr>
 
-<p>
-  <strong>Currency:</strong>
-  <%= @order.currency %>
-</p>
+<strong>Order Details:</strong>
+  <div class="row">
+    <!--<div class="col-lg-3">-->
+      <div class="form-group col-lg-3">
+        Order Number<br>
+        <%= text_field_tag :order_number, nil, placeholder: @order.order_number,:readonly => true %>
+      </div>
+      <div class="form-group col-lg-3">
+        Tracking Number<br>
+        <%= text_field_tag :tracking_number, nil, placeholder: @order.tracking_number,:readonly => true %>
+      </div>
+      <div class="form-group col-lg-3">
+        Delivery Date<br>
+        <%= text_field_tag :delivery_date, nil, placeholder: @order.delivery_date,:readonly => true %>
+      </div>
+    <!--</div>-->
 
-<p>
-  <strong>Is express delivery:</strong>
-  <%= @order.is_express_delivery %>
-</p>
+    <!--<div class="col-lg-3">-->
+      <div class="form-group col-lg-3">
+        Value<br>
+        <%= text_field_tag :value,nil, placeholder: @order.value,:readonly => true %>
+      </div>
+      <div class="form-group col-lg-3">
+        Currency<br>
+        <%=text_field_tag :currency,nil,placeholder: @order.currency,:readonly => true %>
+      </div>
+      <div class="form-group col-lg-3">
+        Delivery Type<br>
+        <%if @order.is_express_delivery %>
+          <%=text_field_tag :currency,nil,placeholder: 'Express Delivery',:readonly => true %> 
+        <%end%>
+        <%if @order.is_customer_pickup %>
+          <%=text_field_tag :currency,nil,placeholder: 'Customer Pickup',:readonly => true %> 
+        <%end%>
+        
+      </div>
+    <!--</div>-->
+  </div><hr>
+<%i=0%>
+  <% for item in @order.line_items %> 
+    
+    <div class="row">
+        <div class="col-lg-3">
+          <strong>Line Item <%=i+=1%></strong>
+        </div>
+        <div class="form-group col-lg-3">
+          SKU<br>
+          <%= text_field_tag :sku,nil, placeholder: item.sku,:readonly => true %>
+        </div>
+        <div class="form-group col-lg-3">
+          Quantity<br>
+          <%=text_field_tag :currency,nil,placeholder: item.quantity,:readonly => true %>
+        </div>
+        <div class="form-group col-lg-3">
+          Price<br>
+          <%=text_field_tag :currency,nil,placeholder: item.cost,:readonly => true %>
+        </div>
+    </div>
+  <%end%>
 
-<p>
-  <strong>Is customer pickup:</strong>
-  <%= @order.is_customer_pickup %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Edit', edit_order_path(@order), class: 'btn btn-info' %> 
+<%= link_to 'Back', orders_path, class: 'btn btn-info' %>

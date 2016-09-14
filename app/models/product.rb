@@ -4,11 +4,8 @@ class Product < ActiveRecord::Base
 	  if search
 	  	p "inside if................."
 	    where('name LIKE ?', "%#{search}%")
-	    
 	  else
-	  	p "...................inside else................."
 	    nil
-
 	  end
 	end
 end

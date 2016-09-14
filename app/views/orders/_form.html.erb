@@ -14,22 +14,22 @@
   <div class="row">
     <div class="form-group col-lg-3">
       First Name<br>
-      <%= text_field_tag :fname, nil, placeholder: current_user.fname %>
+      <%= text_field_tag :fname, nil, placeholder: current_user.fname,:readonly => true %>
     </div>
 
     <div class="form-group col-lg-3">
       Last Name<br>
-      <%= text_field_tag :lname, nil, placeholder: current_user.lname %>
+      <%= text_field_tag :lname, nil, placeholder: current_user.lname,:readonly => true %>
     </div>
 
     <div class="form-group col-lg-3">
       Date Of Birth<br>
-      <%= text_field_tag :dob, nil, placeholder: current_user.dob %>
+      <%= text_field_tag :dob, nil, placeholder: current_user.dob,:readonly => true %>
     </div>
 
     <div class="form-group col-lg-3">
       'e-mail'<br>
-      <%= text_field_tag :email, nil, placeholder: current_user.email %>
+      <%= text_field_tag :email, nil, placeholder: current_user.email,:readonly => true %>
     </div>
   </div><hr>
   
@@ -58,25 +58,39 @@
         <%= f.label :currency %><br>
         <%= f.text_field :currency %>
       </div>
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-3"><br>
         <%= f.check_box :is_express_delivery %>
         <%= f.label :is_express_delivery %>
       </div>
-      <div class="form-group col-lg-3">
+      <div class="form-group col-lg-3"><br>
         <%= f.check_box :is_customer_pickup %>
         <%= f.label :is_customer_pickup %>
       </div>
     <!--</div>-->
   </div><hr>
 
-  <%=render 'search_product' %>
+  <%#=render 'search_product' %>
+
+  <%= f.fields_for :line_items do |a| %>
+      <%= render 'line_item_fields', :f=>a%>
+    <%end%>
+    <%#= link_to_add_fields "Add Line Item", f, :line_items %>
+
+    <p class="search-field"><center>
+      <input type="text" id="search" placeholder="Search product">
+      <%= link_to_add_fields "Search Product", f, :line_items %>
+     <!-- <input type="button" onclick="myFunction()" value="Search" id="btn">-->
+    </center></p>
 
   <hr>
 
   <%#= render 'line_item_form' %>
   <div class="row">
     <div class="form-group">
-      <%= f.submit(class: 'btn btn-default') %>
+      <center>
+        <input type="reset" name="reset" class="btn btn-default">
+        <%= f.submit(class: 'btn btn-default') %>
+      </center>
     </div>
   </div>
 

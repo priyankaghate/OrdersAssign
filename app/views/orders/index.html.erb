@@ -1,41 +1,40 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'New Order', new_order_path, class: 'btn btn-info pull-right' %>
 
 <h1>Listing Orders</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Order number</th>
-      <th>Tracking number</th>
-      <th>Delivery date</th>
-      <th>Value</th>
-      <th>Currency</th>
-      <th>Is express delivery</th>
-      <th>Is customer pickup</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+    <div class="row">
+      
+      <div class="col-lg-2"><strong>Order number</strong></div>
+      <div class="col-lg-2"><strong>Tracking number</strong></div>
+      <div class="col-lg-2"><strong>Delivery date</strong></div>
+      <div class="col-lg-2"><strong>Value</strong></div>
+      <div class="col-lg-2"><strong>Currency</strong></div>
+      <div class="col-lg-2"><strong>Delivery Type</strong></div>
+    </div>
+  
+
+
     <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.order_number %></td>
-        <td><%= order.tracking_number %></td>
-        <td><%= order.delivery_date %></td>
-        <td><%= order.value %></td>
-        <td><%= order.currency %></td>
-        <td><%= order.is_express_delivery %></td>
-        <td><%= order.is_customer_pickup %></td>
-        <td><%= order.user %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="col-lg-2"><%= order.order_number %></div>
+        <div class="col-lg-2"><%= order.tracking_number %></div>
+        <div class="col-lg-2"><%= order.delivery_date %></div>
+        <div class="col-lg-2"><%= order.value %></div>
+        <div class="col-lg-2"><%= order.currency %></div>
+        <%if order.is_express_delivery %>
+          <div class="col-lg-2"> Express Delivery </div>
+        <%end%>
+        <%if order.is_customer_pickup %>
+          <div class="col-lg-2"> Customer Pickup </div>
+        <%end%>
+        <%= link_to 'Show', order, class: 'btn btn-info pull-right' %>
+        <%= link_to 'Edit', edit_order_path(order), class: 'btn btn-info pull-right' %>
+        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info pull-right' %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  
 
-<br>
 
-<%= link_to 'New Order', new_order_path %>
+
+
