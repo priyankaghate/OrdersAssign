@@ -14,9 +14,10 @@ class OrdersController < ApplicationController
   end
 
 def search_product
-    @product = Product.search(params[:product_name])
-    render :json => @product
-
+    #@product = Product.search(params[:product_name])
+    @product = Product.where("name like '%#{params[:term]}%'")
+    p "--------------#{@product.inspect}"
+    render :json => @product.to_json
 end
   # GET /orders/new
   def new
@@ -68,10 +69,10 @@ end
     end
   end
 
-  def add_product
-    @product = Product.search(params[:search])
-    p "================#{@product}=================="
-  end
+  #def add_product
+  #  @product = Product.search(params[:search])
+  #  p "================#{@product}=================="
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913093956) do
+ActiveRecord::Schema.define(version: 20160914125731) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city",       limit: 255
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160913093956) do
     t.integer  "order_number",        limit: 4
     t.integer  "tracking_number",     limit: 4
     t.date     "delivery_date"
-    t.string   "value",               limit: 255
+    t.float    "value",               limit: 24
     t.string   "currency",            limit: 255
     t.boolean  "is_express_delivery"
     t.boolean  "is_customer_pickup"

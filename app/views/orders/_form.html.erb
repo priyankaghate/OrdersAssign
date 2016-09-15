@@ -76,11 +76,12 @@
     <%end%>
     <%#= link_to_add_fields "Add Line Item", f, :line_items %>
 
-    <p class="search-field"><center>
-      <input type="text" id="search" placeholder="Search product">
-      <%= link_to_add_fields "Search Product", f, :line_items %>
-     <!-- <input type="button" onclick="myFunction()" value="Search" id="btn">-->
-    </center></p>
+    <p class="search-field">
+      <center>
+        <input type="text" id="search" placeholder="Search product" autocomplete="on">
+        <%= link_to_add_fields "Search Product", f, :line_items %>
+      </center>
+    </p>
 
   <hr>
 
